@@ -39,6 +39,7 @@ def searchTopics(queryList: list, num_results: int = 5):
         for i in range(min_len):
             headline_result_str = str(Headline[i]) if i < len(Headline) else "No headline result found."
             advsearch_result_str = str(AdvSearch[i]) if i < len(AdvSearch) else "No wider result found."
+            advsearch_result_str += "\n"
 
             output += f"--- Results for Query: '{queryList[i]}' ---\n"
             output += f"Top Answer - {headline_result_str}"
@@ -77,6 +78,7 @@ def perform_batch_web_search(queryList: List[str]) -> str:
     # Pass num_results if it was added to the Pydantic model and received here
     return searchTopics(queryList=queryList)
 
-# Example of how to use the tool directly (optional, for testing)
-# if __name__ == "__main__":
-#     print(perform_batch_web_search(queryList=["latest AI news", "Langchain updates"]))
+
+if __name__ == "__main__":
+    print(perform_batch_web_search.invoke({"queryList": ["latest AI news", "Langchain updates"]}))
+ 
